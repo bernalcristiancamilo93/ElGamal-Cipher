@@ -1,0 +1,7 @@
+{
+  "name": "ElGamal-Cipher",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
