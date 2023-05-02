@@ -1,0 +1,223 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Cifrado Elgamal para CAYD - C. Camilo Bernal Alarcón
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="main-card">
+          <ion-card-header>
+            <ion-card-title> Cifrador / Descifrador Elgamal </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row class="ion-margin">
+              <ion-col>
+                <form [formGroup]="claveForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="primoP"
+                      label="p"
+                      labelPlacement="floating"
+                      placeholder="Ingrese un número primo"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+              <ion-col>
+                <form [formGroup]="claveForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="generadorG"
+                      label="g"
+                      labelPlacement="floating"
+                      placeholder="Ingrese el número generador"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+              <ion-col>
+                <form [formGroup]="claveForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="numeroK"
+                      label="k"
+                      labelPlacement="floating"
+                      placeholder="Ingrese la clave secreta"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin">
+              <ion-col>
+                <ion-button
+                  class="ion-margin-start ion-margin-bottom"
+                  [disabled]="!claveForm.valid"
+                  (click)="verificarClave()"
+                >
+                  Verificar clave
+                </ion-button>
+              </ion-col>
+              <ion-col *ngIf="sonParametrosCorrectos">
+                <ion-item lines="none">
+                  <ion-label>
+                    <p>
+                      Los parametros ingresados no presentan error. ¡Puede
+                      continuar!
+                    </p>
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin">
+              <ion-col size="4">
+                <form [formGroup]="claveForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="numLetrasPorBloque"
+                      label="Letras por bloque "
+                      labelPlacement="stacked"
+                      placeholder="Ingrese un número"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin">
+              <ion-col>
+                <form [formGroup]="cifradoForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="textoClaroInput"
+                      label="Texto claro"
+                      labelPlacement="stacked"
+                      placeholder="Ingrese un texto claro"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <ion-button
+                    class="ion-margin"
+                    [disabled]="!cifradoForm.valid || !claveForm.valid || !sonParametrosCorrectos"
+                    (click)="cifrar()"
+                  >
+                    Cifrar
+                  </ion-button>
+                </form>
+              </ion-col>
+              <ion-col>
+                <form [formGroup]="cifradoForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="aleatorioX"
+                      label="x"
+                      labelPlacement="stacked"
+                      placeholder="Ingrese un número aleatorio"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+              <ion-col>
+                <ion-row class="ion-no-margin ion-no-padding">
+                  <ion-col class="ion-no-margin ion-no-padding">
+                    <form [formGroup]="cifradoForm">
+                      <ion-item>
+                        <ion-input
+                          formControlName="textoClaroFormateado"
+                          label="Texto claro formateado"
+                          labelPlacement="floating"
+                          readonly="true"
+                        >
+                        </ion-input>
+                      </ion-item>
+                    </form>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-no-margin ion-no-padding">
+                  <ion-col class="ion-no-margin ion-no-padding">
+                    <form [formGroup]="cifradoForm">
+                      <ion-item>
+                        <ion-input
+                          formControlName="pesosTextoClaroFormateado"
+                          label="Pesos texto formateado"
+                          labelPlacement="floating"
+                          readonly="true"
+                        >
+                        </ion-input>
+                      </ion-item>
+                    </form>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-no-margin ion-no-padding">
+                  <ion-col class="ion-no-margin ion-no-padding">
+                    <form [formGroup]="cifradoForm">
+                      <ion-item>
+                        <ion-input
+                          formControlName="pesosCifradosOutput"
+                          label="Pesos cifrados"
+                          labelPlacement="floating"
+                          readonly="true"
+                        >
+                        </ion-input>
+                      </ion-item>
+                    </form>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin">
+              <ion-col>
+                <form [formGroup]="descifradoForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="textoCifradoInput"
+                      label="Texto cifrado"
+                      labelPlacement="stacked"
+                      placeholder="Ingrese un texto cifrado"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <ion-button
+                    class="ion-margin"
+                    [disabled]="!descifradoForm.valid || !claveForm.valid || !sonParametrosCorrectos"
+                    (click)="descifrar()"
+                  >
+                    Descrifrar
+                  </ion-button>
+                </form>
+              </ion-col>
+              <ion-col>
+                <form [formGroup]="descifradoForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="textoClaroOutput"
+                      label="Resultado descifrado"
+                      labelPlacement="floating"
+                      readonly="true"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
