@@ -90,6 +90,7 @@
                       labelPlacement="stacked"
                       placeholder="Ingrese un número"
                       type="number"
+                      readonly="true"
                     >
                     </ion-input>
                   </ion-item>
@@ -100,13 +101,15 @@
               <ion-col>
                 <form [formGroup]="cifradoForm">
                   <ion-item>
-                    <ion-input
+                    <ion-textarea
                       formControlName="textoClaroInput"
                       label="Texto claro"
                       labelPlacement="stacked"
                       placeholder="Ingrese un texto claro"
+                      rows="1"
+                      autoGrow="true"
                     >
-                    </ion-input>
+                    </ion-textarea>
                   </ion-item>
                   <ion-button
                     class="ion-margin"
@@ -120,14 +123,16 @@
               <ion-col>
                 <form [formGroup]="cifradoForm">
                   <ion-item>
-                    <ion-input
+                    <ion-textarea
                       formControlName="aleatorioX"
                       label="x"
                       labelPlacement="stacked"
                       placeholder="Ingrese un número aleatorio"
                       type="number"
+                      rows="1"
+                      autoGrow="true"
                     >
-                    </ion-input>
+                    </ion-textarea>
                   </ion-item>
                 </form>
               </ion-col>
@@ -136,13 +141,15 @@
                   <ion-col class="ion-no-margin ion-no-padding">
                     <form [formGroup]="cifradoForm">
                       <ion-item>
-                        <ion-input
+                        <ion-textarea
                           formControlName="textoClaroFormateado"
                           label="Texto claro formateado"
                           labelPlacement="floating"
                           readonly="true"
+                          autoGrow="true"
+                          rows="1"
                         >
-                        </ion-input>
+                        </ion-textarea>
                       </ion-item>
                     </form>
                   </ion-col>
@@ -151,13 +158,15 @@
                   <ion-col class="ion-no-margin ion-no-padding">
                     <form [formGroup]="cifradoForm">
                       <ion-item>
-                        <ion-input
+                        <ion-textarea
                           formControlName="pesosTextoClaroFormateado"
                           label="Pesos texto formateado"
                           labelPlacement="floating"
                           readonly="true"
+                          autoGrow="true"
+                          rows="1"
                         >
-                        </ion-input>
+                        </ion-textarea>
                       </ion-item>
                     </form>
                   </ion-col>
@@ -166,13 +175,15 @@
                   <ion-col class="ion-no-margin ion-no-padding">
                     <form [formGroup]="cifradoForm">
                       <ion-item>
-                        <ion-input
+                        <ion-textarea
                           formControlName="pesosCifradosOutput"
                           label="Pesos cifrados"
                           labelPlacement="floating"
                           readonly="true"
+                          autoGrow="true"
+                          rows="1"
                         >
-                        </ion-input>
+                        </ion-textarea>
                       </ion-item>
                     </form>
                   </ion-col>
@@ -183,14 +194,16 @@
               <ion-col>
                 <form [formGroup]="descifradoForm">
                   <ion-item>
-                    <ion-input
+                    <ion-textarea
                       formControlName="textoCifradoInput"
-                      label="Texto cifrado"
+                      label="Pesos cifrados"
                       labelPlacement="stacked"
-                      placeholder="Ingrese un texto cifrado"
+                      placeholder="Ingrese un peso cifrado"
                       type="number"
+                      autoGrow="true"
+                      rows="1"
                     >
-                    </ion-input>
+                    </ion-textarea>
                   </ion-item>
                   <ion-button
                     class="ion-margin"
@@ -204,13 +217,15 @@
               <ion-col>
                 <form [formGroup]="descifradoForm">
                   <ion-item>
-                    <ion-input
+                    <ion-textarea
                       formControlName="textoClaroOutput"
-                      label="Resultado descifrado"
+                      label="Pesos descifrados"
                       labelPlacement="floating"
                       readonly="true"
+                      autoGrow="true"
+                      rows="1"
                     >
-                    </ion-input>
+                    </ion-textarea>
                   </ion-item>
                 </form>
               </ion-col>
